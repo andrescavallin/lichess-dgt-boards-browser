@@ -42,15 +42,15 @@
                         <span class="home">lichess.org</span>
                     </a>
                     <div role="group">
-                        <a href="/play.html">Play using Board</a>
-                        <a href="/index.html">How it works</a>
+                        <a href="play.html">Play using Board</a>
+                        <a href="index.html">How it works</a>
                     </div>
                 </section>
                 <section>
-                    <a href="/configuration.html">Tools</a>
+                    <a href="configuration.html">Tools</a>
                     <div role="group">
-                        <a href="/configuration.html">Configuration</a>
-                        <a href="https://github.com/andrescavallin/lichess-dgt-boards" target="new">See on Github</a>
+                        <a href="configuration.html">Configuration</a>
+                        <a href="https://github.com/andrescavallin/lichess-dgt-boards-browser" target="new">See on Github</a>
                     </div>
                 </section>
             </nav>
@@ -65,17 +65,17 @@
     <div id="main-wrap" class="is2d">
         <main class="account page-menu">
             <nav class="page-menu__menu subnav">
-                <a href="/index.html">How it works</a>
+                <a href="index.html">How it works</a>
                 <div class="sep"></div>
-                <a href="/play.html">Play using Board</a>
+                <a href="play.html">Play using Board</a>
                 <div class="sep"></div>                    
-                <a class="active" href="/configuration.html">Configuration</a>
+                <a class="active" href="configuration.html">Configuration</a>
                 <div class="sep"></div>
             </nav>
             <div class="page-menu__content">
                 <div class="account box box-pad">
                     <h1>Configuration</h1>
-                    <form method="POST" class="form3" action="configuration.html" onsubmit="return storeValues(this);" id="configurationForm">
+                    <form method="GET" class="form3" action="play.html" onsubmit="return storeValues(this);" id="configurationForm">
                         <div class="form-group">Please configure all values before playing.</div>
 
                         <section>
