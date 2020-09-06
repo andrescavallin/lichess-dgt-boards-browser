@@ -60,9 +60,19 @@ module.exports = {
         var tempConfigValue
         if (localStorage.getItem(key) != null) {
             //return stored value
-            tempConfigValue = localStorage.getItem(key);
-            if (tempConfigValue == "true") tempConfigValue = true;
-            if (tempConfigValue == "false") tempConfigValue = false;
+            if (key="keywords") {
+                try {
+                    tempConfigValue = JSON.parse(tempConfigValue);
+                }
+                catch {
+                    tempConfigValue = defaultValues[key];
+                }
+            }
+            else {
+                tempConfigValue = localStorage.getItem(key);
+                if (tempConfigValue == "true") tempConfigValue = true;
+                if (tempConfigValue == "false") tempConfigValue = false;
+            }
         }
         else {
             //return default value

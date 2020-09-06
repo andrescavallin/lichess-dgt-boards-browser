@@ -20420,9 +20420,19 @@ module.exports = {
         var tempConfigValue
         if (localStorage.getItem(key) != null) {
             //return stored value
-            tempConfigValue = localStorage.getItem(key);
-            if (tempConfigValue == "true") tempConfigValue = true;
-            if (tempConfigValue == "false") tempConfigValue = false;
+            if (key="keywords") {
+                try {
+                    tempConfigValue = JSON.parse(tempConfigValue);
+                }
+                catch {
+                    tempConfigValue = defaultValues[key];
+                }
+            }
+            else {
+                tempConfigValue = localStorage.getItem(key);
+                if (tempConfigValue == "true") tempConfigValue = true;
+                if (tempConfigValue == "false") tempConfigValue = false;
+            }
         }
         else {
             //return default value
@@ -22649,28 +22659,33 @@ module.exports = {
 
 },{"./helpers/bind":102}],112:[function(require,module,exports){
 module.exports={
-  "_from": "axios@^0.19.0",
+  "_args": [
+    [
+      "axios@0.19.2",
+      "C:\\Users\\andre\\Documents\\GitHub\\lichess-dgt-boards-browser"
+    ]
+  ],
+  "_from": "axios@0.19.2",
   "_id": "axios@0.19.2",
   "_inBundle": false,
   "_integrity": "sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==",
   "_location": "/axios",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "axios@^0.19.0",
+    "raw": "axios@0.19.2",
     "name": "axios",
     "escapedName": "axios",
-    "rawSpec": "^0.19.0",
+    "rawSpec": "0.19.2",
     "saveSpec": null,
-    "fetchSpec": "^0.19.0"
+    "fetchSpec": "0.19.2"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/axios/-/axios-0.19.2.tgz",
-  "_shasum": "3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27",
-  "_spec": "axios@^0.19.0",
+  "_spec": "0.19.2",
   "_where": "C:\\Users\\andre\\Documents\\GitHub\\lichess-dgt-boards-browser",
   "author": {
     "name": "Matt Zabriskie"
@@ -22681,7 +22696,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/axios/axios/issues"
   },
-  "bundleDependencies": false,
   "bundlesize": [
     {
       "path": "./dist/axios.min.js",
@@ -22691,7 +22705,6 @@ module.exports={
   "dependencies": {
     "follow-redirects": "1.5.10"
   },
-  "deprecated": false,
   "description": "Promise based HTTP client for the browser and node.js",
   "devDependencies": {
     "bundlesize": "^0.17.0",
