@@ -47,25 +47,7 @@
         - Create, accept, decline challenges (coming soon)
         - Send private messages to other players (coming soon)
     - oAuth not currently supported, only API Token. See Above
-- This Application
-    - **Node.js** v12.16.2 LTS or Above 
-    [https://nodejs.org/]
-    - Install all dependencies by using `>npm install` on this app folder
-    - In the future stand alone executable will be provided
-- Text To Speech
-    - Command line audio player
-        - On Mac OS X **afplay** is already present
-        - On Windows 10 get **cmdmp3**
-        [https://github.com/jimlawless/cmdmp3]
-        - On Linux or practically any OS get **mpg123**
-        [http://mpg123.org/]
-    - IBM Cloud Account
-        - IBM Cloud - Free **Watson Text to Speech** Account
-        [https://www.ibm.com/cloud/watson-text-to-speech]
-        - IBM Cloud **API Key** 
-        [https://cloud.ibm.com/iam/apikeys]
-- Companion Web App
-    - Pending/TODO a Companion Web App to see clock and Text To Speech on Mobile Phone or Tablet next to the physical DGT Board.
+
 
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![Dependency Status](http://img.shields.io/gemnasium/badges/badgerbadgerbadger.svg?style=flat-square)](https://gemnasium.com/badges/badgerbadgerbadger) [![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger) [![Code Climate](http://img.shields.io/codeclimate/github/badges/badgerbadgerbadger.svg?style=flat-square)](https://codeclimate.com/github/badges/badgerbadgerbadger) [![Github Issues](http://githubbadges.herokuapp.com/badges/badgerbadgerbadger/issues.svg?style=flat-square)](https://github.com/badges/badgerbadgerbadger/issues) [![Pending Pull-Requests](http://githubbadges.herokuapp.com/badges/badgerbadgerbadger/pulls.svg?style=flat-square)](https://github.com/badges/badgerbadgerbadger/pulls) [![Gem Version](http://img.shields.io/gem/v/badgerbadgerbadger.svg?style=flat-square)](https://rubygems.org/gems/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) [![Badges](http://img.shields.io/:badges-9/9-ff6799.svg?style=flat-square)](https://github.com/badges/badgerbadgerbadger)
 
@@ -73,53 +55,8 @@
 ---
 
 ## Configuration 
-> This a sample content of `config.json` that needs to be on the same path as the app.js file. All values are valid except for the `personalToken` and `Watson_APIKEY` that you need to obtain yourself and update this file.
 
-config.json
 
-```javascript
-{
-  "baseURL": "https://lichess.org",
-  "personalToken": "__Your Token__",
-  "verbose": false,
-  "announceAllMoves": false,
-  "announceMoveFormat": "san",
-  "splitWords": false,
-  "voice": "Allison",
-  "availableVoices": {
-    "Allison": "en-US_AllisonV3Voice",
-    "Michael": "en-US_MichaelV3Voice",
-    "Sofia": "es-LA_SofiaV3Voice",
-    "Enrique": "es-ES_EnriqueV3Voice",
-    "Renee": "fr-FR_ReneeV3Voice",
-    "Francesca": "it-IT_FrancescaV3Voice"
-  },
-  "Watson_APIKEY": "__Your APIKEY__",
-  "audioFormat": "mp3",
-  "windowsAudioPlayer": "./audioplayer/cmdmp3/cmdmp3.exe",
-  "keywords": {
-    "K": "King",
-    "Q": "Queen",
-    "R": "Rook",
-    "B": "Bishop",
-    "N": "Knight",
-    "P": "Pawn",
-    "x": "Takes",
-    "+": "Check",
-    "#": "Checkmate",
-    "(=)": "Game ends in draw",
-    "O-O": "Castles kingside",
-    "O-O-O": "Castles queenside",
-    "white": "White",
-    "black": "Black",
-    "wins by": "wins by",
-    "timeout": "timeout",
-    "resignation": "resignation",
-    "illegal": "illegal",
-    "move": "move"
-  }
-}
-```
 > Explanation of each value
 
  - <span style="font-weight:bold">"baseURL": "https://lichess.org"</span><p>The base URL for Lichess. Use https://lichess.org unless you need to target development environments or your own Lichess fork.</p>
@@ -127,19 +64,7 @@ config.json
  - <span style="font-weight:bold">"verbose": false</span> <p>Set this as `false` unless you want to debug connectivity with lihcess or the DGT Board</p>
  - <span style="font-weight:bold">"announceAllMoves": false</span> <p>When set to `false` will only announce moves from opponent, when set to `true`, will annouce all moves.</p>
  - <span style="font-weight:bold">"announceMoveFormat": "san"</span> <p>Possible values are `san` and `uci` . San is nicer but will require more storage for Text To Speech since it includes the name the of the piece, while uci only includes origin and target squares</p>
- - <span style="font-weight:bold">"splitWords": false</span> <p>When set to `true` the Text To Speech will generate separete audio file for the name of the pieces and the target squares, saving disk space. This will create a long pause between the name of the piece and the target square that may be a little bit annoying but acceptable. When set to `false` each san move will become an audio file </p>
  - <span style="font-weight:bold">"voice": "Allison"</span> <p>The name of the Text To Speech persona used by IBM Watson for generating the audio file. The full list can be found at <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#voices">Languages and voices</a>. The voice needs to be added to the object availableVoices that has both the short name and the IBM Watson full name. Like this:</p>
- "availableVoices": 
-    - "Allison": "en-US_AllisonV3Voice"
-    - "Michael": "en-US_MichaelV3Voice"
-    - "Sofia": "es-LA_SofiaV3Voice"
-    - "Enrique": "es-ES_EnriqueV3Voice"
-    - "Renee": "fr-FR_ReneeV3Voice"
-    - "Francesca": "it-IT_FrancescaV3Voice"
-
- - <span style="font-weight:bold">"Watson_APIKEY": "__Your APIKEY__"</span> <p>We are not endorsing IBM Watson Text To Speech in any way, it is just the web service that we selected because of the free tier and because V3 personas sound really real. You will need to <a href="https://cloud.ibm.com/docs/text-to-speech">signup</a> and then you can request the API Key <a href="https://cloud.ibm.com/resources">here</a></p>
- - <span style="font-weight:bold">"audioFormat": "mp3"</span><p>The MIME Type like `wav` or `mp3`. The full list of supported formats can be found at <a href="https://cloud.ibm.com/apidocs/text-to-speech#synthesize-audio">Audio formats (accept types)</a></p>
- - <span style="font-weight:bold">"windowsAudioPlayer": "./audioplayer/cmdmp3/cmdmp3.exe"</span><p>On MacOS the command line audio player `afplay` is used. But on Windows a tool is needed. This value represents the path to the command line audio player tool. Remember to download this tool for Text To Speech to work on Windows when you want the audio to be played on the host machine.</p>
  - <span style="font-weight:bold">"keywords": {...}</span><p>This object contains the english words what will be used to tranlate san moves into an announcement. If you want to use spanish for example, replace the values, as in this sample:</p>
 
 
