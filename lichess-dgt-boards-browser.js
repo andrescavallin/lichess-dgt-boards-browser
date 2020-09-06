@@ -19393,7 +19393,7 @@ var verbose = Boolean(nconf.get('verbose'));; //Verbose on or off
 var announceAllMoves = Boolean(nconf.get('announceAllMoves'));;; //Announce moves for both players or only the opponents
 const announceMoveFormat = nconf.get('announceMoveFormat');
 const keywords = nconf.get('keywords');
-const keywordsBase = ["K", "Q", "R", "B", "N", "P", "x", "+", "#", "(=)", "O-O", "O-O-O", "white", "black", "wins by", "timeout", "resignation"]
+const keywordsBase = ["K", "Q", "R", "B", "N", "P", "x", "+", "#", "(=)", "O-O-O", "O-O", "white", "black", "wins by", "timeout", "resignation"]
 if (verbose) console.log("Runnig in verbose mode");
 /**
  * GLOBAL VATIABLES
