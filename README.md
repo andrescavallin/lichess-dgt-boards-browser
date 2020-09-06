@@ -19,7 +19,7 @@
 > Play on <a hred="https://lichess.org/">Lichess.org</a> using your <a href="https://www.digitalgametechnology.com/index.php/products/electronic-boards">DGT Electronic Board</a> as input. Incoming moves can be played on audio devices or displayed on the screen. This code can easily be adaptaed to play with other boards.
 
 
-> The program works by connecting to Lichess via the Board API set of APIs, and to the DGT Board by opening a websocket connecting to the free LiveChess 2.2 which is the software DGT developed to broadcast tournaments. When moves are played on the board the program will detect those and send them to Lichess, and moves played on lichess by your opponent will be announced on screen and by audio, and they need to be executed on the board manually. Text to speech is provided by IBM Watson, and several languages are supported.
+> The program works by connecting to Lichess via the Board API set of APIs, and to the DGT Board by opening a websocket connecting to the free LiveChess 2.2 which is the software DGT developed to broadcast tournaments. When moves are played on the board the program will detect those and send them to Lichess, and moves played on lichess by your opponent will be announced on screen and by audio, and they need to be executed on the board manually. Text to speech is provided by the Browser, and several languages are supported.
 
 ---
 
@@ -59,12 +59,12 @@
 
 > Explanation of each value
 
- - <span style="font-weight:bold">"baseURL": "https://lichess.org"</span><p>The base URL for Lichess. Use https://lichess.org unless you need to target development environments or your own Lichess fork.</p>
- - <span style="font-weight:bold">"personalToken": "__Your Token__"</span> <p>This is your lichess token obtained from <a href="https://lichess.org/account/oauth/token/create?scopes[]=board:play&scopes[]=preference:read&scopes[]=challenge:read&scopes[]=challenge:write&scopes[]=msg:write&description=DGT+Board">Personal API access token</a></p>
- - <span style="font-weight:bold">"verbose": false</span> <p>Set this as `false` unless you want to debug connectivity with lihcess or the DGT Board</p>
- - <span style="font-weight:bold">"announceAllMoves": false</span> <p>When set to `false` will only announce moves from opponent, when set to `true`, will annouce all moves.</p>
- - <span style="font-weight:bold">"announceMoveFormat": "san"</span> <p>Possible values are `san` and `uci` . San is nicer but will require more storage for Text To Speech since it includes the name the of the piece, while uci only includes origin and target squares</p>
- - <span style="font-weight:bold">"voice": "Allison"</span> <p>The name of the Text To Speech persona used by IBM Watson for generating the audio file. The full list can be found at <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#voices">Languages and voices</a>. The voice needs to be added to the object availableVoices that has both the short name and the IBM Watson full name. Like this:</p>
+ - <span style="font-weight:bold">Lichess base URL (baseURL)</span><p>The base URL for Lichess. Use https://lichess.org unless you need to target development environments or your own Lichess fork.</p>
+ - <span style="font-weight:bold">Lichess API Access Token (personalToken)</span> <p>This is your lichess token obtained from <a href="https://lichess.org/account/oauth/token/create?scopes[]=board:play&scopes[]=preference:read&scopes[]=challenge:read&scopes[]=challenge:write&scopes[]=msg:write&description=DGT+Board">Personal API access token</a></p>
+ - <span style="font-weight:bold">Verbose</span> <p>Set this as `false` unless you want to debug connectivity with lihcess or the DGT Board</p>
+ - <span style="font-weight:bold">Announce All Moves</span> <p>When set to `No` will only announce moves from opponent, when set to `Yes`, will annouce all moves.</p>
+ - <span style="font-weight:bold">Announce Move Format</span> <p>Possible values are `san` and `uci` . San is nicer but will require more storage for Text To Speech since it includes the name the of the piece, while uci only includes origin and target squares</p>
+ - <span style="font-weight:bold">Voice</span> <p>The name of the Text To Speech persona used by the browser for generating the audio file. </p>
  - <span style="font-weight:bold">"keywords": {...}</span><p>This object contains the english words what will be used to tranlate san moves into an announcement. If you want to use spanish for example, replace the values, as in this sample:</p>
 
 

@@ -102,23 +102,31 @@
                             </div>
 
                             <section>
-                                <h2>DGT Board Requirements</h2>
-                                <div class="form-group">Use this section to configure how to connect to lichess by using the Board API</div>
-                                <div class="form-group">
-                                <label class="form-label" for="form3-personalToken">Lichess API Access Token</label>
-                                <input id="form3-personalToken" name="personalToken" value="" class="form-control" autofocus="autofocus" required="required">
-                                    <small class="form-help">Personal access tokens function like ordinary Lichess OAuth access tokens. They can be used to authenticate to the API over Basic Authentication.</small>
-                                    <small class="form-help">To get an access token please visit this link: 
-                                        <a href="https://lichess.org/account/oauth/token/create?scopes[]=board:play&scopes[]=preference:read&scopes[]=challenge:read&scopes[]=challenge:write&scopes[]=msg:write&description=DGT+Board">Get API Access Token</a>
-                                    </small>
+                                <h2>Lichess Requirements</h2>
+                                <div class="form-group">In order to use this program you will need to create an account on Lihcess.org</br>
+                                    If you don't an account yet, please register here on this link: <a href="https://lichess.org/signup">Lichess Registration</a>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="form3-baseURL">Lichess base URL</label>
-                                    <input id="form3-baseURL" name="baseURL" value="https://lichess.org" class="form-control" required="required">
-                                        <small class="form-help">Use "https://lichess.org" unless you want to tesk on a development environment.</small>
-                                    </div>                            
+                                <div class="form-group">You also need a Lichess API Access Token.</br>
+                                    To get an access token please visit this link: 
+                                        <a href="https://lichess.org/account/oauth/token/create?scopes[]=board:play&scopes[]=preference:read&scopes[]=challenge:read&scopes[]=challenge:write&scopes[]=msg:write&description=DGT+Board">Get API Access Token</a>
+                                </div>    
+                                <div class="form-group">Lastly you need to configure the API Access Token on the configuration section.</br>
+                                    If you have not done so already, visit the <a href="configuration.html">Configuration Section</a>
+                                </div>                                                                
                             </section>
 
+                            <section>
+                                <h2>DGT Board Requirements</h2>
+                                <div class="form-group">To connect to the DGT Electronic Board you will need to install DGT LiveChess 2.2.5 or later</br>
+                                    You can download the software here: <a href="http://www.livechesscloud.com/software/">LiveChess 2.X</a>
+                                </div>
+                                <div class="form-group">This page and LiveChess must be on the same local network.</br>
+                                    If LiveChess is running on this same computer, you can check you connection to LiveChess by opening this link: <a href="http://localhost:1982/doc/index.html">DGT LiveChess Documentation</a>
+                                </div>
+                                <div class="form-group">If LiveChess is running on a different machine or different port,</br>
+                                    you will need to set the IP address and port here on the <a href="configuration.html">Configuration Section</a>
+                                </div>                                                                 
+                            </section>
                         </form>
                     </div>
                 </div>
