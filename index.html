@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!-- Lichess is open source! See https://github.com/ornicar/lila -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#2e2a24">
+    <title>Lichess - DGT Board - How it works</title>
+    <link href="https://lichess1.org/assets/_4kXDJF/css/site.dark.min.css" type="text/css" rel="stylesheet" />
+    <link href="https://lichess1.org/assets/_4kXDJF/css/account.dark.min.css" type="text/css" rel="stylesheet" />
+    <meta
+        content="Play on Lichess.org using your DGT Electronic Board as input. Incoming moves can be played on audio devices or displayed on the screen. This code can easily be adaptaed to play with other boards."
+        name="description" />
+    <link rel="mask-icon" href="https://lichess1.org/assets/logo/lichess.svg" style="color: black;" />
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-512.png" sizes="512x512">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-256.png" sizes="256x256">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-128.png" sizes="128x128">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-64.png" sizes="64x64">
+    <link id="favicon" rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-32.png"
+        sizes="32x32">
+</head>
+    <body class="dark brown Woodi Basic coords-in" data-vapid="BGr5CL0QlEYa7qW7HLqe7DFkCeTsYMLsi1Db+5Vwt1QBIs6+WxN8066AjtP8S9u+w+CbleE8xWY+qQaNEMs7sAs=" data-user="andrescavallin" data-sound-set="standard" data-socket-domains="socket0.lichess.org,socket1.lichess.org,socket2.lichess.org,socket3.lichess.org,socket4.lichess.org,socket5.lichess.org" data-asset-url="https://lichess1.org" data-asset-version="4kXDJF" data-theme="dark">
+        <header id="top">
+            <div class="site-title-nav">
+                <input type="checkbox" id="tn-tg" class="topnav-toggle fullscreen-toggle" aria-label="Navigation">
+                <label for="tn-tg" class="fullscreen-mask"></label>
+                <label for="tn-tg" class="hbg">
+                    <span class="hbg__in"></span>
+                </label>
+                <h1 class="site-title">
+                    <a href="https://andrescavallin.github.io/lichess-dgt-boards/" target="new">
+                        lichess-dgt-boards<span>.github</span>
+                    </a>
+                </h1>
+                <nav id="topnav" class="hover">                    
+                    <section>
+                        <a href="/">
+                            <span class="play">Play</span>
+                            <span class="home">lichess.org</span>
+                        </a>
+                        <div role="group">
+                            <a href="/play.html">Play using Board</a>
+                            <a href="/index.html">How it works</a>
+                        </div>
+                    </section>
+                    <section>
+                        <a href="/configuration.html">Tools</a>
+                        <div role="group">
+                            <a href="/configuration.html">Configuration</a>
+                            <a href="https://github.com/andrescavallin/lichess-dgt-boards" target="new">See on Github</a>
+                        </div>
+                    </section>
+                </nav>
+            </div>
+            <div class="site-buttons">
+                <div id="clinput">
+                    <a class="link">
+                        <span data-icon="y"></span>
+                    </a>
+                    <input spellcheck="false" autocomplete="false" aria-label="Search" placeholder="Search"/>
+                </div>
+                <div>
+                    <a id="challenge-toggle" class="toggle link">
+                        <span title="Challenges" class="data-count" data-count="0" data-icon="U"></span>
+                    </a>
+                    <div id="challenge-app" class="dropdown"></div>
+                </div>
+                <div>
+                    <a id="notify-toggle" class="toggle link">
+                        <span title="Notifications" class="data-count" data-count="0" data-icon=""></span>
+                    </a>
+                    <div id="notify-app" class="dropdown"></div>
+                </div>
+                <div class="dasher">
+                    <a id="user_tag" class="toggle link">Not Connected</a>
+                    <div id="dasher_app" class="dropdown"></div>
+                </div>
+            </div>
+        </header>
+        <div id="main-wrap" class="is2d">
+            <main class="account page-menu">
+                <nav class="page-menu__menu subnav">
+                    <a class="active" href="/index.html">How it works</a>
+                    <div class="sep"></div>
+                    <a href="/play.html">Play using Board</a>
+                    <div class="sep"></div>                    
+                    <a href="/configuration.html">Configuration</a>
+                    <div class="sep"></div>
+                </nav>
+                <div class="page-menu__content">
+                    <!--<div class="account box box-pad">-->
+                    <div class="account oauth box box-pad">                        
+                        <h1>How it works</h1>
+                        <form method="get" class="form3" action="play.html">
+                            <div class="form-group">This program will communicate with Lichess using the Board API and with DGT Board using LiveChess 2.X</br>
+                                If you already configured your API Access Token click Play below
+                            </div>
+                            <div class="form-actions single">
+                                <button type="submit" data-icon="E" class="submit button text">Play</button>
+                            </div>
+
+                            <section>
+                                <h2>DGT Board Requirements</h2>
+                                <div class="form-group">Use this section to configure how to connect to lichess by using the Board API</div>
+                                <div class="form-group">
+                                <label class="form-label" for="form3-personalToken">Lichess API Access Token</label>
+                                <input id="form3-personalToken" name="personalToken" value="" class="form-control" autofocus="autofocus" required="required">
+                                    <small class="form-help">Personal access tokens function like ordinary Lichess OAuth access tokens. They can be used to authenticate to the API over Basic Authentication.</small>
+                                    <small class="form-help">To get an access token please visit this link: 
+                                        <a href="https://lichess.org/account/oauth/token/create?scopes[]=board:play&scopes[]=preference:read&scopes[]=challenge:read&scopes[]=challenge:write&scopes[]=msg:write&description=DGT+Board">Get API Access Token</a>
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="form3-baseURL">Lichess base URL</label>
+                                    <input id="form3-baseURL" name="baseURL" value="https://lichess.org" class="form-control" required="required">
+                                        <small class="form-help">Use "https://lichess.org" unless you want to tesk on a development environment.</small>
+                                    </div>                            
+                            </section>
+
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

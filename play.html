@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!-- Lichess is open source! See https://github.com/ornicar/lila -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#2e2a24">
+    <title>Lichess - DGT Board - Play using Board</title>
+    <link href="https://lichess1.org/assets/_4kXDJF/css/site.dark.min.css" type="text/css" rel="stylesheet" />
+    <link href="https://lichess1.org/assets/_4kXDJF/css/account.dark.min.css" type="text/css" rel="stylesheet" />
+    <style>
+    #log-container { overflow: auto; height: 500px; }
+
+    .log-warn { color: orange }
+    .log-error { color: red }
+    .log-info { color: skyblue }
+    .log-log { color: silver }
+    .log-table { color: cyan }
+
+    .log-warn, .log-error { font-weight: bold; }        
+    </style>
+    <meta
+        content="Play on Lichess.org using your DGT Electronic Board as input. Incoming moves can be played on audio devices or displayed on the screen. This code can easily be adaptaed to play with other boards."
+        name="description" />
+    <link rel="mask-icon" href="https://lichess1.org/assets/logo/lichess.svg" style="color: black;" />
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-512.png" sizes="512x512">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-256.png" sizes="256x256">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-128.png" sizes="128x128">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-64.png" sizes="64x64">
+    <link id="favicon" rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-32.png"
+        sizes="32x32">
+    <script>if (!(localStorage.getItem("personalToken") != null) || (localStorage.getItem("personalToken").length < 10)) window.location.href = "configuration.html";</script>
+</head>
+   
+    <body class="dark brown Woodi Basic coords-in" data-vapid="BGr5CL0QlEYa7qW7HLqe7DFkCeTsYMLsi1Db+5Vwt1QBIs6+WxN8066AjtP8S9u+w+CbleE8xWY+qQaNEMs7sAs=" data-user="andrescavallin" data-sound-set="standard" data-socket-domains="socket0.lichess.org,socket1.lichess.org,socket2.lichess.org,socket3.lichess.org,socket4.lichess.org,socket5.lichess.org" data-asset-url="https://lichess1.org" data-asset-version="4kXDJF" data-theme="dark">
+        <header id="top">
+            <div class="site-title-nav">
+                <input type="checkbox" id="tn-tg" class="topnav-toggle fullscreen-toggle" aria-label="Navigation">
+                <label for="tn-tg" class="fullscreen-mask"></label>
+                <label for="tn-tg" class="hbg">
+                    <span class="hbg__in"></span>
+                </label>
+                <h1 class="site-title">
+                    <a href="https://andrescavallin.github.io/lichess-dgt-boards/" target="new">
+                        lichess-dgt-boards<span>.github</span>
+                    </a>
+                </h1>
+                <nav id="topnav" class="hover">                    
+                    <section>
+                        <a href="/">
+                            <span class="play">Play</span>
+                            <span class="home">lichess.org</span>
+                        </a>
+                        <div role="group">
+                            <a href="/play.html">Play using Board</a>
+                            <a href="/index.html">How it works</a>
+                        </div>
+                    </section>
+                    <section>
+                        <a href="/configuration.html">Tools</a>
+                        <div role="group">
+                            <a href="/configuration.html">Configuration</a>
+                            <a href="https://github.com/andrescavallin/lichess-dgt-boards" target="new">See on Github</a>
+                        </div>
+                    </section>
+                </nav>
+            </div>
+            <div class="site-buttons">
+                <div id="clinput">
+                    <a class="link">
+                        <span data-icon="y"></span>
+                    </a>
+                    <input spellcheck="false" autocomplete="false" aria-label="Search" placeholder="Search"/>
+                </div>
+                <div>
+                    <a id="challenge-toggle" class="toggle link">
+                        <span title="Challenges" class="data-count" data-count="0" data-icon="U"></span>
+                    </a>
+                    <div id="challenge-app" class="dropdown"></div>
+                </div>
+                <div>
+                    <a id="notify-toggle" class="toggle link">
+                        <span title="Notifications" class="data-count" data-count="0" data-icon=""></span>
+                    </a>
+                    <div id="notify-app" class="dropdown"></div>
+                </div>
+                <div class="dasher">
+                    <a id="user_tag" class="toggle link">Not Connected</a>
+                    <div id="dasher_app" class="dropdown"></div>
+                </div>
+            </div>
+        </header>
+        <div id="main-wrap" class="is2d">
+            <main class="account page-menu">
+                <nav class="page-menu__menu subnav">
+                    <a href="/index.html">How it works</a>
+                    <div class="sep"></div>
+                    <a class="active" href="/play.html">Play using Board</a>
+                    <div class="sep"></div>                    
+                    <a href="/configuration.html">Configuration</a>
+                    <div class="sep"></div>
+                </nav>
+                <div class="page-menu__content">
+                    <!--<div class="account box box-pad">-->
+                    <div class="account oauth box box-pad">                        
+                        <h1>Play using Board</h1>
+                        <form method="GET" class="form3" action="play.html">
+                            <div class="form-group">Keep this tab opened to play using your DGT Board on Lichess.org . It can be minimized but not closed.</div>
+
+                            <div class="form-group">                                
+                                <div id="log-container">
+                                    <pre id="log" ></pre>
+                                </div>
+                            </div>
+
+                            <div class="form-actions single">
+                                <button type="submit" data-icon="E" class="submit button text">Restart</button>
+                            </div>
+
+                            <!--<div class="scopes"><div><span><input id="enableSpeech" name="scopes[]" value="preference:read" type="checkbox" class="form-control cmn-toggle"><label for="enableSpeech"></label></span><label for="enableSpeech">Enable Speech</label></div></div>-->
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script>
+            
+rewireLoggingToElement(
+    () => document.getElementById("log"),
+    () => document.getElementById("log-container"), true);
+
+function rewireLoggingToElement(eleLocator, eleOverflowLocator, autoScroll) {
+    fixLoggingFunc('log');
+    fixLoggingFunc('debug');
+    fixLoggingFunc('warn');
+    fixLoggingFunc('error');
+    fixLoggingFunc('info');
+    fixLoggingFunc('table');
+
+    function fixLoggingFunc(name) {
+        console['old' + name] = console[name];
+        console[name] = function(...arguments) {
+        var output = produceOutput(name, arguments);
+            if (output != "*" && output != ":")
+                output += "<br>";               
+            const eleLog = eleLocator();
+            if (autoScroll) {
+                const eleContainerLog = eleOverflowLocator();
+                const isScrolledToBottom = eleContainerLog.scrollHeight - eleContainerLog.clientHeight <= eleContainerLog.scrollTop + 1;
+                eleLog.innerHTML += output;
+                if (isScrolledToBottom) {
+                    eleContainerLog.scrollTop = eleContainerLog.scrollHeight - eleContainerLog.clientHeight;
+                }
+            } else {
+                eleLog.innerHTML += output;
+            }
+
+            console['old' + name].apply(undefined, arguments);
+        };
+    }
+
+    function produceOutput(name, args) {
+        return args.reduce((output, arg) => {
+            if (String(arg).length < 2)
+                return arg;
+            else
+                return output +
+                    "<span class=\"log-" + (typeof arg) + " log-" + name + "\">" +
+                        (typeof arg === "object" && (JSON || {}).stringify ? JSON.stringify(arg) : arg) +
+                    "</span>&nbsp;";
+        }, '');
+    }
+}
+
+        </script>
+        
+        <script src="lichess-dgt-boards-browser.js"></script>
+    </body>
+</html>

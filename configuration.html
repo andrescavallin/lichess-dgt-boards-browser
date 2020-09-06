@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!-- Lichess is open source! See https://github.com/ornicar/lila -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#2e2a24">
+    <title>Lichess - DGT Board - Configuration</title>
+    <link href="https://lichess1.org/assets/_4kXDJF/css/site.dark.min.css" type="text/css" rel="stylesheet" />
+    <link href="https://lichess1.org/assets/_4kXDJF/css/account.dark.min.css" type="text/css" rel="stylesheet" />
+    <meta
+        content="Play on Lichess.org using your DGT Electronic Board as input. Incoming moves can be played on audio devices or displayed on the screen. This code can easily be adaptaed to play with other boards."
+        name="description" />
+    <link rel="mask-icon" href="https://lichess1.org/assets/logo/lichess.svg" style="color: black;" />
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-512.png" sizes="512x512">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-256.png" sizes="256x256">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-128.png" sizes="128x128">
+    <link rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-64.png" sizes="64x64">
+    <link id="favicon" rel="icon" type="image/png" href="https://lichess1.org/assets/logo/lichess-favicon-32.png"
+        sizes="32x32">
+</head>
+
+<body class="dark brown Woodi Basic coords-in">
+    <header id="top">
+        <div class="site-title-nav">
+            <input type="checkbox" id="tn-tg" class="topnav-toggle fullscreen-toggle" aria-label="Navigation">
+            <label for="tn-tg" class="fullscreen-mask"></label>
+            <label for="tn-tg" class="hbg">
+                <span class="hbg__in"></span>
+            </label>
+            <h1 class="site-title">
+                <a href="https://andrescavallin.github.io/lichess-dgt-boards/" target="new">
+                    lichess-dgt-boards<span>.github</span>
+                </a>
+            </h1>
+            <nav id="topnav" class="hover">                    
+                <section>
+                    <a href="/">
+                        <span class="play">Play</span>
+                        <span class="home">lichess.org</span>
+                    </a>
+                    <div role="group">
+                        <a href="/play.html">Play using Board</a>
+                        <a href="/index.html">How it works</a>
+                    </div>
+                </section>
+                <section>
+                    <a href="/configuration.html">Tools</a>
+                    <div role="group">
+                        <a href="/configuration.html">Configuration</a>
+                        <a href="https://github.com/andrescavallin/lichess-dgt-boards" target="new">See on Github</a>
+                    </div>
+                </section>
+            </nav>
+        </div>
+        <div class="site-buttons">
+            <div class="dasher">
+                <a id="user_tag" class="toggle link">Not Connected</a>
+                <div id="dasher_app" class="dropdown"></div>
+            </div>
+        </div>
+    </header>
+    <div id="main-wrap" class="is2d">
+        <main class="account page-menu">
+            <nav class="page-menu__menu subnav">
+                <a href="/index.html">How it works</a>
+                <div class="sep"></div>
+                <a href="/play.html">Play using Board</a>
+                <div class="sep"></div>                    
+                <a class="active" href="/configuration.html">Configuration</a>
+                <div class="sep"></div>
+            </nav>
+            <div class="page-menu__content">
+                <div class="account box box-pad">
+                    <h1>Configuration</h1>
+                    <form method="POST" class="form3" action="configuration.html" onsubmit="return storeValues(this);" id="configurationForm">
+                        <div class="form-group">Please configure all values before playing.</div>
+
+                        <section>
+                            <h2>Lichess Connectivity </h2>
+                            <div class="form-group">Use this section to configure how to connect to lichess by using the Board API</div>
+                            <div class="form-group">
+                            <label class="form-label" for="form3-personalToken">Lichess API Access Token</label>
+                            <input id="form3-personalToken" name="personalToken" value="" class="form-control" autofocus="autofocus" required="required">
+                                <small class="form-help">Personal access tokens function like ordinary Lichess OAuth access tokens. They can be used to authenticate to the API over Basic Authentication.</small>
+                                <small class="form-help">To get an access token please visit this link: 
+                                    <a href="https://lichess.org/account/oauth/token/create?scopes[]=board:play&scopes[]=preference:read&scopes[]=challenge:read&scopes[]=challenge:write&scopes[]=msg:write&description=DGT+Board">Get API Access Token</a>
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="form3-baseURL">Lichess base URL</label>
+                                <input id="form3-baseURL" name="baseURL" value="https://lichess.org" class="form-control" required="required">
+                                    <small class="form-help">Use "https://lichess.org" unless you want to tesk on a development environment.</small>
+                                </div>                            
+                        </section>
+
+                        <section>
+                            <h2>DGT Board Connectivity </h2>
+                            <div class="form-group">Use this section to configure how to connect to LiveChess 2.2.5+ . This software is free for DGT Electronic Board owners and can be downloaded here 
+                                <a href="http://www.livechesscloud.com/software/" target="new">LiveChess Download</a>
+
+                            </div>
+                            <div class="form-group">
+                            <label class="form-label" for="form3-liveChessURL">LiveChess 2.2.5+ URL</label>
+                            <input id="form3-liveChessURL" name="liveChessURL" value="ws://localhost:1982/api/v1.0" class="form-control" autofocus="autofocus" required="required">
+                            <small class="form-help">Use "ws://localhost:1982/api/v1.0" unless LiveChess is running on a different machine or different port.</small>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2>Text to Speech </h2>
+                            <div class="form-group">This section is used to configure voice narration of the played moves, so you can keep your eyes on the board.</div>
+                            <div class="form-group">
+                                <label class="form-label" for="form3-speechSynthesisOn">Enable Speech Synthesis</label>
+                                <group class="radio">
+                                    <div><input id="speechSynthesisOn_0" type="radio" value="false" name="speechSynthesisOn"><label for="speechSynthesisOn_0">No</label></div>
+                                    <div><input id="speechSynthesisOn_1" checked="checked" class="active" type="radio" value="true" name="speechSynthesisOn"><label for="speechSynthesisOn_1">Yes</label></div>
+                                </group>
+                                <small class="form-help">Select YES to listen to moves spoken when made.</small>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="form-label" for="voiceSelect">Voice</label>
+                                    <select id="voiceSelect" name="voiceSelect" class="form-control"></select>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                            <label class="form-label" for="form3-announceAllMoves">Announce All Moves</label>
+                            <group class="radio">
+                                <div><input id="announceAllMoves_0" checked="checked" class="active" type="radio" value="false" name="announceAllMoves"><label for="announceAllMoves_0">No</label></div>
+                                <div><input id="announceAllMoves_1" type="radio" value="true" name="announceAllMoves"><label for="announceAllMoves_1">Yes</label></div>
+                            </group>
+                            <small class="form-help">Select YES to annouce both your moves and your opponent's moves. Select NO to annouce only your opponent's moves.</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="form3-announceMoveFormat">Announce Move Format</label>
+                            <group class="radio">
+                                <div><input id="announceMoveFormat_0" checked="checked" class="active" type="radio" value="san" name="announceMoveFormat"><label for="announceMoveFormat_0">SAN</label></div>
+                                <div><input id="announceMoveFormat_1" type="radio" value="uci" name="announceMoveFormat"><label for="announceMoveFormat_1">UCI</label></div>
+                            </group>
+                            <small class="form-help">San is the standard on Lichess like "Nf6". UCI is common on engines like "g8f6"</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="form3-keywords">Keywords</label>
+                            <textarea id="form3-keywords" name="keywords" class="form-control" maxlength="600" rows="10">
+{
+    "K": "King",
+    "Q": "Queen",
+    "R": "Rook",
+    "B": "Bishop",
+    "N": "Knight",
+    "P": "Pawn",
+    "x": "Takes",
+    "+": "Check",
+    "#": "Checkmate",
+    "(=)": "Game ends in draw",
+    "O-O": "Castles kingside",
+    "O-O-O": "Castles queenside",
+    "white": "White",
+    "black": "Black",
+    "wins by": "wins by",
+    "timeout": "timeout",
+    "resignation": "resignation",
+    "illegal": "illegal",
+    "move": "move"
+}          
+                            </textarea>
+                            <small class="form-help">Keywords are in JSON format. They are used to translate moves and results into your language. Default is English, but feel free to change it.</small>
+                        </div>                        
+
+                        </section>
+
+                        <section>
+                            <h2>Debugging</h2>
+                            <div class="form-group">Use this section to configure verbose level on console</div>
+                            <div class="form-group">
+                                <label class="form-label" for="form3-verbose">Verbose</label>
+                                <group class="radio">
+                                    <div><input id="verbose_0" checked="checked" class="active" type="radio" value="false" name="verbose"><label for="verbose_0">No</label></div>
+                                    <div><input id="verbose_1" type="radio" value="true" name="verbose"><label for="verbose_1">Yes</label></div>
+                                </group>
+                                <small class="form-help">To see console message press Command + Option + C (Mac) or Control + Shift + C (Windows, Linux, Chrome OS) </small>
+                            </div>
+                        </section>
+                
+
+                        <div class="form-actions single">
+                            <button type="submit" data-icon="E" class="submit button text">Save</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function populateVoiceList() {
+            if (typeof speechSynthesis === 'undefined') {
+                return;
+            }
+
+            var voices = speechSynthesis.getVoices();
+
+            for (var i = 0; i < voices.length; i++) {
+                var option = document.createElement('option');
+                option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+
+                if (voices[i].default) {
+                    option.textContent += ' -- DEFAULT';
+                    //if (localStorage.getItem("voice") == null) {
+                    //    localStorage.setItem("voice", voices[i].name);
+                    //}
+
+                }
+
+                option.setAttribute('data-lang', voices[i].lang);
+                option.setAttribute('data-name', voices[i].name);
+                document.getElementById("voiceSelect").appendChild(option);
+                if (voices[i].name == localStorage.getItem("voice")) {
+                    document.getElementById("voiceSelect").selectedIndex = i;
+                }
+            }
+
+        }
+
+        if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = populateVoiceList;
+        }
+
+        //document.getElementById("voiceSelect").onchange = function () {
+        //    localStorage.setItem("voice", document.getElementById("voiceSelect").options[document.getElementById("voiceSelect").selectedIndex].getAttribute('data-name'));
+        //};
+
+        function storeValues(form) {
+            localStorage.setItem("personalToken",form.personalToken.value);
+            localStorage.setItem("baseURL",form.baseURL.value);
+            localStorage.setItem("liveChessURL",form.liveChessURL.value);
+            localStorage.setItem("speechSynthesisOn",form.speechSynthesisOn.value);
+            localStorage.setItem("voice", document.getElementById("voiceSelect").options[document.getElementById("voiceSelect").selectedIndex].getAttribute('data-name'));
+            localStorage.setItem("announceAllMoves",form.announceAllMoves.value);
+            localStorage.setItem("announceMoveFormat",form.announceMoveFormat.value);
+            localStorage.setItem("keywords",form.keywords.value);
+            localStorage.setItem("verbose",form.verbose.value);
+            return true;
+        }
+
+        function readValues(form) {
+           
+            form = document.getElementById("configurationForm");
+            form.personalToken.value = localStorage.getItem("personalToken");
+            if (localStorage.getItem("baseURL") != null)
+                form.baseURL.value = localStorage.getItem("baseURL");    
+            if (localStorage.getItem("liveChessURL") != null)
+                form.liveChessURL.value = localStorage.getItem("liveChessURL");
+            if (localStorage.getItem("speechSynthesisOn") != null)
+                (localStorage.getItem("speechSynthesisOn") == "true") ? document.getElementById("speechSynthesisOn_1").checked = true : document.getElementById("speechSynthesisOn_0").checked = true
+            populateVoiceList();
+            if (localStorage.getItem("announceAllMoves") != null)
+                (localStorage.getItem("announceAllMoves") == "true") ? document.getElementById("announceAllMoves_1").checked = true : document.getElementById("announceAllMoves_0").checked = true
+            if (localStorage.getItem("announceMoveFormat") != null)
+                (localStorage.getItem("announceMoveFormat") == "uci") ? document.getElementById("announceMoveFormat_1").checked = true : document.getElementById("announceMoveFormat_0").checked = true
+            if (localStorage.getItem("keywords") != null)
+                form.keywords.value = localStorage.getItem("keywords");
+            if (localStorage.getItem("verbose") != null)
+                (localStorage.getItem("verbose") == "true") ? document.getElementById("verbose_1").checked = true : document.getElementById("verbose_0").checked = true;
+        }
+
+        readValues();
+    </script>
+</body>
+
+</html>
