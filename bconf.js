@@ -64,7 +64,7 @@ module.exports = {
                 try {
                     tempConfigValue = JSON.parse(tempConfigValue);
                 }
-                catch {
+                catch (error) {
                     tempConfigValue = defaultValues[key];
                 }
             }

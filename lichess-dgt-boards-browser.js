@@ -20420,11 +20420,11 @@ module.exports = {
         var tempConfigValue
         if (localStorage.getItem(key) != null) {
             //return stored value
-            if (key="keywords") {
+            if (key=="keywords") {
                 try {
                     tempConfigValue = JSON.parse(tempConfigValue);
                 }
-                catch {
+                catch (error) {
                     tempConfigValue = defaultValues[key];
                 }
             }
