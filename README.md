@@ -25,12 +25,21 @@
 
 ## Table of Contents
 
+- [Playing](#Playing)
 - [Requirements](#Requirements)
 - [Configuration](#Configuration)
+- [Building](#Building)
 - [License](#license)
 
 ---
-### Requirements
+## Playing
+
+If you just want to play using your DGT Electronic Board on Lichess.org you can just visit the GitHub Page for this project and play from there.</br>
+https://andrescavallin.github.io/lichess-dgt-boards-browser/ </br>
+There is no need to download this project or to install anything else except LiveChess 2.2.5 or later as explained in the next section.
+
+---
+## Requirements
 
 - DGT Board
     - Any **DGT Electronic Board** including Smart Board, Blue Tooth, USB and Serial Boards [https://www.digitalgametechnology.com/index.php/products/electronic-boards]
@@ -93,6 +102,35 @@
     }
 
 ```
+---
+
+## Building
+
+In order to run this code on your own machine you will need an HTTP server. For example:
+```
+$ http-server .  
+```
+Then visit http://localhost:8080/index.html
+
+If you make changes to the code, you will need to run browserify again
+```
+$ browserify app.js -o lichess-dgt-boards-browser.js 
+```
+And then you will need to add this line of code to the generated bundle <b>lichess-dgt-boards-browser.js</b>
+```
+exports.speechSynthesis = speechSynthesis;
+```
+at line number 25373 before 
+<b>exports.log = log;</b>
+ . It will look something like this:
+````
+exports = module.exports = require('./debug');
+exports.speechSynthesis = speechSynthesis;
+exports.log = log;
+exports.formatArgs = formatArgs;
+````
+Failing to add the line <b>exports.speechSynthesis = speechSynthesis;</b> will result in that speech synthesis will always play witht he default voice.
+
 
 ---
 
@@ -101,4 +139,4 @@
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
-- Developed during April - June 2020
+- Developed during April - August 2020
