@@ -1,3 +1,9 @@
+> <span style="color:red;font-weight:bold">NOTE:</span> This project has been integrated directly into Lichess.org  . Please visti:</br>
+https://lichess.org/dgt
+
+---
+OLD README
+
 <div id='wrapper' style='text-align: center;'>
     <div style='display: inline-block; vertical-align: middle;'>
         <a href="https://www.digitalgametechnology.com/index.php/products/electronic-boards">
